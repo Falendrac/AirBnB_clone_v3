@@ -113,3 +113,56 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_valid_case(self):
+        """
+        Test the get method of file_storage.
+        In the valid way by take the first State of DB
+        """
+        state = State()
+        state.name = "Test of State"
+        all_state = models.storage.all(State)
+        key = list(all_state.keys())[0]
+        state_get = models.storage.get(State, all_state[key].id)
+        self.assertTrue(state_get is all_state[key])
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_unvalide_case_insert_none(self):
+        """
+        Test the get method of file_storage.
+        But passes none in method.
+        """
+        state_get = models.storage.get(None, None)
+        self.assertEqual(None, state_get)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_unvalid_case_instance_doesnt_exist(self):
+        """
+        Test the get method of file_storage.
+        But passes an invalid id
+        """
+        state_get = models.storage.get(State, "dsjghp-sogihs-ezfzi3234")
+        self.assertEqual(None, state_get)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_all_objects(self):
+        """
+        Test the count method of file_storage.
+        Test all objects.
+        """
+        all_objects = models.storage.all()
+        count_objects = models.storage.count()
+
+        self.assertEqual(count_objects, len(all_objects))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_all_state(self):
+        """
+        Test the count method of file_storage.
+        Pass State in argument.
+        """
+        all_states = models.storage.all(State)
+        count_states = models.storage.count(State)
+
+        self.assertEqual(count_states, len(all_states))
