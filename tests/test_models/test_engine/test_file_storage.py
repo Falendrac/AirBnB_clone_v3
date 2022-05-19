@@ -120,6 +120,8 @@ class TestFileStorage(unittest.TestCase):
         Test the get method of file_storage.
         In the valid way by take the first State of DB
         """
+        state = State()
+        state.name = "Test of State"
         all_state = models.storage.all(State)
         key = list(all_state.keys())[0]
         state_get = models.storage.get(State, all_state[key].id)
