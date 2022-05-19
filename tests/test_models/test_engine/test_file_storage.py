@@ -113,3 +113,32 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_valide_case(self):
+        """
+        Test the get method of file_storage.
+        In the valid way by take the first State of DB
+        """
+        all_state = models.storage.all(State)
+        key = list(all_state.keys())[0]
+        state_get = models.storage.get(State, all_state[key].id)
+        self.assertTrue(state_get is key)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_unvalide_case_insert_none(self):
+        """
+        Test the get method of file_storage.
+        But passes none in method.
+        """
+        state_get = models.storage.get(None, None)
+        self.assertEqual(None, state_get)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_unvalide_case_instance_doesnt_exist(self):
+        """
+        Test the get method of file_storage.
+        But passes an invalid id
+        """
+        state_get = models.storage.get(State, "dsjghp-sogihs-ezfzi3234")
+        self.assertEqual(None, state_get)
