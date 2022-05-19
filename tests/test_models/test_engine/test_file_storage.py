@@ -135,7 +135,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(None, state_get)
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
-    def test_get_unvalide_case_instance_doesnt_exist(self):
+    def test_get_unvalid_case_instance_doesnt_exist(self):
         """
         Test the get method of file_storage.
         But passes an invalid id
