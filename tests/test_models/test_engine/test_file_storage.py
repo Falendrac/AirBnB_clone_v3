@@ -123,8 +123,6 @@ class TestFileStorage(unittest.TestCase):
         all_state = models.storage.all(State)
         key = list(all_state.keys())[0]
         state_get = models.storage.get(State, all_state[key].id)
-        print(state_get)
-        print(key)
         self.assertTrue(state_get is all_state[key])
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
@@ -144,3 +142,25 @@ class TestFileStorage(unittest.TestCase):
         """
         state_get = models.storage.get(State, "dsjghp-sogihs-ezfzi3234")
         self.assertEqual(None, state_get)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_all_objects(self):
+        """
+        Test the count method of file_storage.
+        Test all objects.
+        """
+        all_objects = models.storage.all()
+        count_objects = models.storage.count()
+
+        self.assertEqual(count_objects, len(all_objects))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_all_state(self):
+        """
+        Test the count method of file_storage.
+        Pass State in argument.
+        """
+        all_states = models.storage.all(State)
+        count_states = models.storage.count(State)
+
+        self.assertEqual(count_states, len(all_states))

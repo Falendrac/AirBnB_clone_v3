@@ -84,3 +84,9 @@ class FileStorage:
                 cls_catch = value
 
         return (cls_catch)
+
+    def count(self, cls=None):
+        """
+        Count all object cls in the file_storage and return it
+        """
+        return len(self.all(cls))
