@@ -8,9 +8,9 @@ from api.v1.views.index import *
 from flask import Flask
 from models import storage
 import os
+
+
 app = Flask(__name__)
-
-
 app.register_blueprint(app_views)
 
 
@@ -20,7 +20,14 @@ def teardown_db(exception):
     storage.close()
 
 
-if __name__ == '__main__':
+@app.errorhandler(404)
+def invalid_route(e):
+    """handler for 404 errors"""
+    return {"error": "Not found"}
+
+
+def main():
+    """run the Flask server"""
     if os.environ["HBNB_API_HOST"] is None:
         os.environ["HBNB_API_HOST"] = "0.0.0.0"
     if os.environ["HBNB_API_PORT"] is None:
@@ -31,3 +38,7 @@ if __name__ == '__main__':
         port=os.environ["HBNB_API_PORT"],
         threaded=True
     )
+
+
+if __name__ == '__main__':
+    main()
