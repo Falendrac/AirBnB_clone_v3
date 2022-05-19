@@ -123,7 +123,9 @@ class TestFileStorage(unittest.TestCase):
         all_state = models.storage.all(State)
         key = list(all_state.keys())[0]
         state_get = models.storage.get(State, all_state[key].id)
-        self.assertTrue(state_get is key)
+        print(state_get)
+        print(key)
+        self.assertTrue(state_get is all_state[key])
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_get_unvalide_case_insert_none(self):
