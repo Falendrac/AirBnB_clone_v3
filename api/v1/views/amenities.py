@@ -11,7 +11,7 @@ from models.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET', 'POST'])
-def states_state_id_cities():
+def amenities():
     """
     Methods:
         GET: Retrieves the list of all Amenity objects
@@ -46,7 +46,7 @@ def states_state_id_cities():
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET', 'DELETE', 'PUT'])
-def cities_city_id(amenity_id):
+def amenities_amenity_id(amenity_id):
     """
     Methods:
         GET: Retrieves a Amenity object
