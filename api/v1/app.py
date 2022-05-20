@@ -22,7 +22,7 @@ def teardown_db(exception):
 @app.errorhandler(404)
 def invalid_route(e):
     """handler for 404 errors"""
-    return {"error": "Not found"}
+    return {"error": "Not found"}, 404
 
 
 def main():
