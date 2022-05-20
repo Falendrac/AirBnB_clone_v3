@@ -92,6 +92,7 @@ class TestFileStorage(unittest.TestCase):
         """
         Test the get method of file_storage.
         In the valid way by take the first State of DB
+        We need to create a new state before that.
         """
         state = State()
         state.name = "Test of State"
