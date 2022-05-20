@@ -22,15 +22,15 @@ def places_place_id_reviews(place_id):
 
     # GET method
     if request.method == 'GET':
-        citiesList = []
+        reviewList = []
 
         reviews = storage.all('Review')
         for review in reviews.values():
-            citiesDict = review.to_dict()
-            if citiesDict['place_id'] == place_id:
-                citiesList.append(citiesDict)
+            reviewsDict = review.to_dict()
+            if reviewsDict['place_id'] == place_id:
+                reviewList.append(reviewsDict)
 
-        return jsonify(citiesList)
+        return jsonify(reviewList)
 
     # POST method
     elif request.method == 'POST':
