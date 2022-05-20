@@ -71,8 +71,8 @@ class FileStorage:
 
     def get(self, cls, id):
         """
-        Get an instance of a specific class (cls) and id and
-        return the instance
+            Get an instance of a specific class (cls) and id and
+            return the instance
         """
         if cls is None or id is None:
             return (None)
@@ -87,8 +87,8 @@ class FileStorage:
 
     def count(self, cls=None):
         """
-        Count all object cls in the file_storage and return it
+            Count all object cls in the file_storage and return it
 
-        cls can be none.
+            cls can be none.
         """
         return len(self.all(cls))
