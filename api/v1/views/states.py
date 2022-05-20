@@ -36,10 +36,10 @@ def states():
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(404, 'Not a JSON')
+            abort(400, 'Not a JSON')
 
         if 'name' not in requestDict:
-            abort(404, 'Missing name')
+            abort(400, 'Missing name')
 
         new_state = State(**requestDict)
         storage.new(new_state)
