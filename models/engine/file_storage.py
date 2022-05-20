@@ -88,5 +88,7 @@ class FileStorage:
     def count(self, cls=None):
         """
         Count all object cls in the file_storage and return it
+
+        cls can be none.
         """
         return len(self.all(cls))
