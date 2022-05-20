@@ -4,7 +4,6 @@ app module witch define an app
 """
 
 from api.v1.views import app_views
-from api.v1.views.index import *
 from flask import Flask
 from models import storage
 import os
