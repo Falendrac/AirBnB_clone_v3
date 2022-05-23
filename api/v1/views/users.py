@@ -90,4 +90,6 @@ def user_id(user_id):
         for key, value in requestDict.items():
             if key not in invalid_key:
                 setattr(user_catch, key, value)
+
+        user_catch.save()
         return user_catch.to_dict(), 200
