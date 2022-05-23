@@ -30,7 +30,7 @@ def places_place_id_amenities(place_id):
             amenitiesObjects = place.amenity_ids
 
         for amenity in amenitiesObjects:
-            amenitiesList.append(amenity)
+            amenitiesList.append(amenity.to_dict())
 
         return jsonify(amenitiesList)
 
