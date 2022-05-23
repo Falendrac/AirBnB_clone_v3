@@ -2,10 +2,11 @@
 """Test BaseModel for expected behavior and documentation"""
 from datetime import datetime
 import inspect
+import unittest
 import models
 import pycodestyle
 import time
-import unittest
+import pep8
 from unittest import mock
 BaseModel = models.base_model.BaseModel
 module_doc = models.base_model.__doc__
