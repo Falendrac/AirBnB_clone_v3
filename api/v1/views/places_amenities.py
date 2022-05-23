@@ -10,7 +10,8 @@ from models import storage
 from os import getenv
 
 
-@app_views.route('/places/<place_id>/amenities', methods=['GET'])
+@app_views.route('/places/<place_id>/amenities',
+                 methods=['GET'], strict_slashes=False)
 def places_place_id_amenities(place_id):
     """
     Methods:
@@ -30,11 +31,12 @@ def places_place_id_amenities(place_id):
 
         for amenity in amenitiesObjects:
             amenitiesList.append(amenity)
-        
+
         return jsonify(amenitiesList)
 
 
-@app_views.route('/places/<place_id>/amenities/<amenity_id>', methods=['DELETE', 'POST'])
+@app_views.route('/places/<place_id>/amenities/<amenity_id>',
+                 methods=['DELETE', 'POST'], strict_slashes=False)
 def places_place_id_amenities_amenity_id(place_id, amenity_id):
     """
     Methods:
