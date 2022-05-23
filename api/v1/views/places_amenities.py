@@ -17,7 +17,7 @@ def places_place_id_amenities(place_id):
     Methods:
         GET: Retrieves the list of all Amenity objects of a Place
     """
-    place = storage.get("State", place_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
 
@@ -43,7 +43,7 @@ def places_place_id_amenities_amenity_id(place_id, amenity_id):
         DELETE: Deletes a Amenity object to a Place
         POST: Link a Amenity object to a Place
     """
-    place = storage.get("State", place_id)
+    place = storage.get("Place", place_id)
     if place is None:
         abort(404)
 
