@@ -45,7 +45,6 @@ def places_place_id_amenities_amenity_id(place_id, amenity_id):
     """
     place = storage.get("Place", place_id)
     if place is None:
-        print(place)
         abort(404)
 
     amenity = storage.get("Amenity", amenity_id)
