@@ -87,4 +87,6 @@ def state_id(state_id):
         for key, value in requestDict.items():
             if key not in invalid_key:
                 setattr(state_catch, key, value)
+
+        state_catch.save()
         return state_catch.to_dict(), 200
