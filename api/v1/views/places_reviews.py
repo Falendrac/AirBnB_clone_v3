@@ -10,7 +10,7 @@ from models import storage
 from models.review import Review
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'])
+@app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'], strict_slashes=False)
 def places_place_id_reviews(place_id):
     """
     Methods:
@@ -90,4 +90,5 @@ def reviews_review_id(review_id):
             if key not in ignoredList:
                 setattr(review, key, value)
 
+        review.save()
         return review.to_dict(), 200
