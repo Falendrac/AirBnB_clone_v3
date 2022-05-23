@@ -10,7 +10,7 @@ from models import storage
 from models.city import City
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET', 'POST'])
+@app_views.route('/states/<state_id>/cities', methods=['GET', 'POST'], strict_slashes=False)
 def states_state_id_cities(state_id):
     """
     Methods:
