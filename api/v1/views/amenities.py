@@ -29,7 +29,6 @@ def amenities():
 
     # POST method
     elif request.method == 'POST':
-        print("salut")
         requestDict = request.get_json()
 
         if not requestDict:
@@ -73,11 +72,12 @@ def amenities_amenity_id(amenity_id):
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(400, 'Not a JSON')
+            return 'Not a JSON', 400
 
         ignoredList = ["id", "created_at", "updated_at"]
         for key, value in requestDict.items():
             if key not in ignoredList:
                 setattr(amenity, key, value)
 
+        amenity.save()
         return amenity.to_dict(), 200
