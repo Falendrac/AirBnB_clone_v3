@@ -10,7 +10,8 @@ from models import storage
 from models.review import Review
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def places_place_id_reviews(place_id):
     """
     Methods:
