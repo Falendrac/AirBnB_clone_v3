@@ -8,7 +8,7 @@ import inspect
 import models
 from models import amenity
 from models.base_model import BaseModel
-import pycodestyle
+import pep8
 import unittest
 Amenity = amenity.Amenity
 
@@ -21,17 +21,17 @@ class TestAmenityDocs(unittest.TestCase):
         cls.amenity_f = inspect.getmembers(Amenity, inspect.isfunction)
 
     def test_pycodestyle_conformance_amenity(self):
-        """Test that models/amenity.py conforms to pycodestyle."""
-        pycodestyles = pycodestyle.StyleGuide(quiet=True)
+        """Test that models/amenity.py conforms to pep8."""
+        pycodestyles = pep8.StyleGuide(quiet=True)
         result = pycodestyles.check_files(['models/amenity.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_pycodestyle_conformance_test_amenity(self):
         """
-        Test that tests/test_models/test_amenity.py conforms to pycodestyle.
+        Test that tests/test_models/test_amenity.py conforms to pep8.
         """
-        pycodestyles = pycodestyle.StyleGuide(quiet=True)
+        pycodestyles = pep8.StyleGuide(quiet=True)
         result = pycodestyles.check_files(
                             ['tests/test_models/test_amenity.py'])
         self.assertEqual(result.total_errors, 0,
