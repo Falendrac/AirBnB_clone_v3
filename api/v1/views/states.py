@@ -81,7 +81,7 @@ def state_id(state_id):
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(404, 'Not a JSON')
+            return 'Not a JSON', 400
 
         invalid_key = ['id', 'created_at', 'updated_at']
         for key, value in requestDict.items():
