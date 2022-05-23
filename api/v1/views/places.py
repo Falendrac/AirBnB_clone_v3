@@ -45,7 +45,7 @@ def cities_city_id_places(city_id):
 
         user = storage.get("User", requestDict["user_id"])
         if user is None:
-            abort(400)
+            abort(404)
 
         if "name" not in requestDict:
             abort(400, 'Missing name')
