@@ -84,10 +84,12 @@ def user_id(user_id):
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(404, 'Not a JSON')
+            abort(400, 'Not a JSON')
 
         invalid_key = ['id', 'email', 'created_at', 'updated_at']
         for key, value in requestDict.items():
             if key not in invalid_key:
                 setattr(user_catch, key, value)
+
+        user_catch.save()
         return user_catch.to_dict(), 200

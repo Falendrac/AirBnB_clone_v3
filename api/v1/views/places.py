@@ -10,7 +10,8 @@ from models import storage
 from models.place import Place
 
 
-@app_views.route('/cities/<city_id>/places', methods=['GET', 'POST'])
+@app_views.route('/cities/<city_id>/places',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def cities_city_id_places(city_id):
     """
     Methods:
@@ -39,12 +40,12 @@ def cities_city_id_places(city_id):
         if not requestDict:
             abort(400, 'Not a JSON')
 
-        if not "user_id" in requestDict:
+        if "user_id" not in requestDict:
             abort(400, 'Missing user_id')
-        
+
         user = storage.get("User", requestDict["user_id"])
         if user is None:
-            abort(400)
+            abort(404)
 
         if "name" not in requestDict:
             abort(400, 'Missing name')
@@ -91,4 +92,5 @@ def places_place_id(place_id):
             if key not in ignoredList:
                 setattr(place, key, value)
 
+        place.save()
         return place.to_dict(), 200

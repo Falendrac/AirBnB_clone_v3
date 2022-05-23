@@ -10,7 +10,8 @@ from models import storage
 from models.city import City
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET', 'POST'])
+@app_views.route('/states/<state_id>/cities',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def states_state_id_cities(state_id):
     """
     Methods:
@@ -37,10 +38,10 @@ def states_state_id_cities(state_id):
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(400, 'Not a JSON')
+            return 'Not a JSON', 400
 
         if "name" not in requestDict:
-            abort(400, 'Missing name')
+            return 'Missing name', 400
 
         requestDict['state_id'] = state_id
         newCity = City(**requestDict)
@@ -77,11 +78,12 @@ def cities_city_id(city_id):
         requestDict = request.get_json()
 
         if not requestDict:
-            abort(400, 'Not a JSON')
+            return 'Not a JSON', 400
 
         ignoredList = ["id", "state_id", "created_at", "updated_at"]
         for key, value in requestDict.items():
             if key not in ignoredList:
                 setattr(city, key, value)
 
+        city.save()
         return city.to_dict(), 200
